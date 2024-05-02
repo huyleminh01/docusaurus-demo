@@ -9,13 +9,15 @@ on:
     # Review gh actions docs if you want to further define triggers, paths, etc
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
+defaults:
+  run:
+    working-directory: page-docs
+
 jobs:
   build:
     name: Build Docusaurus
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: docs
+    runs-on: ubuntu-22.04
+
     steps:
       - uses: actions/checkout@v4
         with:
