@@ -31,10 +31,13 @@ jobs:
       - name: Build website
         run: yarn build
 
+      - name: Check build
+        run: ls -l
+
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: page-docs/build
 
   deploy:
     name: Deploy to GitHub Pages
