@@ -13,8 +13,9 @@ jobs:
   build:
     name: Build Docusaurus
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./docs
+    defaults:
+      run:
+        working-directory: ./docs
     steps:
       - uses: actions/checkout@v4
         with:
