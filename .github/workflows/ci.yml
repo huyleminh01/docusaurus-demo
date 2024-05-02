@@ -1,4 +1,4 @@
-name: Deploy DBML docs to GitHub Pages
+name: Build DBML docs
 
 on:
   pull_request:
