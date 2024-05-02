@@ -1,17 +1,14 @@
 name: Deploy DBML docs to Github Pages
 
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed
-    paths:
-      - 'page-docs/**'
+  workflow_dispatch:
+    # branches:
+    #   - main
+    # paths:
+    #   - 'page-docs/**'
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true
     name: Build Docusaurus
     runs-on: ubuntu-22.04
     defaults:
@@ -43,7 +40,6 @@ jobs:
           path: page-docs/build
 
   deploy:
-    if: github.event.pull_request.merged == true
     name: Deploy to GitHub Pages
     needs: build
 
