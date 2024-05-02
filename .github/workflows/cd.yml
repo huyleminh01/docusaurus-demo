@@ -1,11 +1,9 @@
 name: Deploy DBML docs to Github Pages
 
 on:
-  workflow_dispatch:
+  push:
     branches:
       - main
-    types:
-      - closed
     paths:
       - 'page-docs/**'
 
