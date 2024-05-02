@@ -23,6 +23,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
+        working-directory: page-docs
         with:
           node-version: 20
           cache: yarn
@@ -30,7 +31,7 @@ jobs:
       - name: Install dependencies
         working-directory: page-docs
         run: yarn install --frozen-lockfile
-      
+
       - name: Build website
         working-directory: page-docs
         run: yarn build
