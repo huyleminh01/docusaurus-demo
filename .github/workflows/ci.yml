@@ -9,9 +9,9 @@ on:
     # Review gh actions docs if you want to further define triggers, paths, etc
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
-# defaults:
-#   run:
-#     working-directory: page-docs
+defaults:
+  run:
+    working-directory: page-docs
 
 jobs:
   build:
@@ -19,9 +19,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Log path
-        run: pwd
-        working-directory: page-docs
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -33,6 +30,7 @@ jobs:
       - name: Install dependencies
         working-directory: page-docs
         run: yarn install --frozen-lockfile
+      
       - name: Build website
         working-directory: page-docs
         run: yarn build
