@@ -2,7 +2,7 @@
 title: Syntax
 ---
 
-# DBML - Full Syntax Docs
+# Full Syntax Docs
 
 DBML (database markup language) is a simple, readable DSL language designed to define database structures. This page
 outlines the full syntax documentations of DBML.
