@@ -4,28 +4,36 @@ on:
   pull_request:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+    paths:
+      - 'page-docs/**'
 
 jobs:
   build:
     name: Build Docusaurus
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: page-docs
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.x
           cache: yarn
+          cache-dependency-path: ./page-docs/yarn.lock
 
       - name: Install dependencies
+        # working-directory: page-docs
         run: yarn install --frozen-lockfile
+
       - name: Build website
+        # working-directory: page-docs
         run: yarn build
 
-      - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
+      # - name: Upload Build Artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: build
