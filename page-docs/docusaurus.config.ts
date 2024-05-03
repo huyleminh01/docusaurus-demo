@@ -8,10 +8,10 @@ const config: Config = {
   tagline: 'Documentations for dbml',
   favicon: '/img/dbml-favicon.svg',
   // Set the production url of your site here
-  url: 'https://huyleminh01.github.io',
+  url: 'https://gh.domainnametestest.online',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/docusaurus-demo/',
+  baseUrl: '/',
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'huyleminh01', // Usually your GitHub org/user name.
