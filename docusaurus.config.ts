@@ -15,7 +15,7 @@ const config: Config = {
   },
 
   url: 'https://blog.dbdiagram.dev',
-  baseUrl: '/blog',
+  baseUrl: '/blog/',
 
   organizationName: 'huyleminh01',
   projectName: 'docusaurus-demo',
