@@ -32,7 +32,7 @@ jobs:
           npm run build
 
           # 2) Path build (baseUrl '/blog/') -> temp dir
-          BLOG_BASE_URL=/blog/ npm run build --out-dir build-blog-tmp
+          BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
 
           # 3) Merge the /blog/ build into the same artifact under build/blog/
           #    (no overwrites: root build/blog holds only static images;
