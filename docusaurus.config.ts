@@ -14,8 +14,8 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  url: 'https://huyleminh01.github.io',
-  baseUrl: '/',
+  url: 'https://blog.dbdiagram.dev',
+  baseUrl: '/blog',
 
   organizationName: 'huyleminh01',
   projectName: 'docusaurus-demo',
