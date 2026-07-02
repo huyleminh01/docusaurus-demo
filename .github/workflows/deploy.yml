@@ -31,15 +31,15 @@ jobs:
           # 1) Root build (baseUrl '/') -> ./build  (serves blog.dbdiagram.io/*)
           npm run build
 
-          # # 2) Path build (baseUrl '/blog/') -> temp dir
-          # BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
+          # 2) Path build (baseUrl '/blog/') -> temp dir
+          BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
 
-          # # 3) Merge the /blog/ build into the same artifact under build/blog/
-          # #    (no overwrites: root build/blog holds only static images;
-          # #     the /blog/ build adds pages/assets alongside them)
-          # mkdir -p build/blog
-          # cp -R build-blog-tmp/. build/blog/
-          # rm -rf build-blog-tmp
+          # 3) Merge the /blog/ build into the same artifact under build/blog/
+          #    (no overwrites: root build/blog holds only static images;
+          #     the /blog/ build adds pages/assets alongside them)
+          mkdir -p build/blog
+          cp -R build-blog-tmp/. build/blog/
+          rm -rf build-blog-tmp
 
       - uses: actions/upload-pages-artifact@v3
         with:
