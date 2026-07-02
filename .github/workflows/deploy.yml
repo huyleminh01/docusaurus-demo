@@ -26,20 +26,24 @@ jobs:
 
       - run: npm ci
 
-      - name: Build source code
+      # - name: Build source code (2 folders)
+      #   run: |
+      #     # 1) Root build (baseUrl '/') -> ./build  (serves blog.dbdiagram.io/*)
+      #     npm run build
+
+      #     # 2) Path build (baseUrl '/blog/') -> temp dir
+      #     BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
+
+      #     # 3) Merge the /blog/ build into the same artifact under build/blog/
+      #     #    (no overwrites: root build/blog holds only static images;
+      #     #     the /blog/ build adds pages/assets alongside them)
+      #     mkdir -p build/blog
+      #     cp -R build-blog-tmp/. build/blog/
+      #     rm -rf build-blog-tmp
+
+      - name: Build source code (base path /blog/)
         run: |
-          # 1) Root build (baseUrl '/') -> ./build  (serves blog.dbdiagram.io/*)
-          npm run build
-
-          # 2) Path build (baseUrl '/blog/') -> temp dir
-          BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
-
-          # 3) Merge the /blog/ build into the same artifact under build/blog/
-          #    (no overwrites: root build/blog holds only static images;
-          #     the /blog/ build adds pages/assets alongside them)
-          mkdir -p build/blog
-          cp -R build-blog-tmp/. build/blog/
-          rm -rf build-blog-tmp
+          BLOG_BASE_URL=/blog/ npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
