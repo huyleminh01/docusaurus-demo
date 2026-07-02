@@ -41,6 +41,10 @@ jobs:
           cp -R build-blog-tmp/. build/blog/
           rm -rf build-blog-tmp
 
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
       # - name: Build source code (base path /blog/)
       #   run: |
       #     BLOG_BASE_URL=/blog/ npm run build
