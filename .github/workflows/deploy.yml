@@ -54,7 +54,7 @@ jobs:
           # under blog/ to make /blog/... resolve, and redirect the bare root.
           mkdir -p _site/blog
           cp -r build/. _site/blog/
-          # echo '<!doctype html><meta http-equiv="refresh" content="0; url=/blog/">' > _site/index.html
+          echo '<!doctype html><meta http-equiv="refresh" content="0; url=/blog/">' > _site/index.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
