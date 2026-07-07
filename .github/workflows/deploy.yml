@@ -26,39 +26,39 @@ jobs:
 
       - run: npm ci
 
-      - name: Build source code (2 folders)
-        run: |
-          # 1) Root build (baseUrl '/') -> ./build  (serves blog.dbdiagram.io/*)
-          npm run build
-
-          # 2) Path build (baseUrl '/blog/') -> temp dir
-          BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
-
-          # 3) Merge the /blog/ build into the same artifact under build/blog/
-          #    (no overwrites: root build/blog holds only static images;
-          #     the /blog/ build adds pages/assets alongside them)
-          mkdir -p build/blog
-          cp -R build-blog-tmp/. build/blog/
-          rm -rf build-blog-tmp
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
-
-      # - name: Build source code (base path /blog/)
+      # - name: Build source code (2 folders)
       #   run: |
-      #     BLOG_BASE_URL=/blog/ npm run build
+      #     # 1) Root build (baseUrl '/') -> ./build  (serves blog.dbdiagram.io/*)
+      #     npm run build
 
-      #     # build/ is flat (build/assets/...), but the site is built for /blog/.
-      #     # The custom domain serves the artifact at the root, so nest the build
-      #     # under blog/ to make /blog/... resolve, and redirect the bare root.
-      #     mkdir -p _site/blog
-      #     cp -r build/. _site/blog/
-      #     echo '<!doctype html><meta http-equiv="refresh" content="0; url=/blog/">' > _site/index.html
+      #     # 2) Path build (baseUrl '/blog/') -> temp dir
+      #     BLOG_BASE_URL=/blog/ npm run build -- --out-dir build-blog-tmp
+
+      #     # 3) Merge the /blog/ build into the same artifact under build/blog/
+      #     #    (no overwrites: root build/blog holds only static images;
+      #     #     the /blog/ build adds pages/assets alongside them)
+      #     mkdir -p build/blog
+      #     cp -R build-blog-tmp/. build/blog/
+      #     rm -rf build-blog-tmp
 
       # - uses: actions/upload-pages-artifact@v3
       #   with:
-      #     path: _site
+      #     path: build
+
+      - name: Build source code (base path /blog/)
+        run: |
+          BLOG_BASE_URL=/blog/ npm run build
+
+          # build/ is flat (build/assets/...), but the site is built for /blog/.
+          # The custom domain serves the artifact at the root, so nest the build
+          # under blog/ to make /blog/... resolve, and redirect the bare root.
+          mkdir -p _site/blog
+          cp -r build/. _site/blog/
+          # echo '<!doctype html><meta http-equiv="refresh" content="0; url=/blog/">' > _site/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
 
   deploy:
     needs: build
